@@ -39,7 +39,7 @@ public class SuperTypeToken {
 
 	private static void cannotReturnType() throws NoSuchFieldException {
 		Sup<String> s = new Sup<>();
-
+		s.value = "s";
 		System.out.println("Type Erasure");
 		System.out.println(s.getClass().getDeclaredField("value").getType());
 	}

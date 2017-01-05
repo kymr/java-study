@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author yongmaroo.kim (yongmaroo.kim@navercorp.com)
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class ReactiveWebApp {
 
 	@RestController
