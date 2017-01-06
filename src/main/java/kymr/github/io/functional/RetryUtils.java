@@ -32,22 +32,18 @@ public class RetryUtils {
 	}
 
 	public static void retry(RunnableWithException runnable, Throwable throwable, String message) {
-		retryLogics(runnable, throwable, message);
+		retryLogics(() -> {
+			runnable.run();
+			return null;
+		}, throwable, message);
 	}
 
-	private static <T> T retryLogics(Object functionalInterface, Throwable throwable, String message) {
+	private static <T> T retryLogics(Callable<T> callable, Throwable throwable, String message) {
 		int counter = 0;
 
 		while (counter < RETRY) {
 			try {
-				if (functionalInterface instanceof Callable) {
-					return (T) ((Callable) functionalInterface).call();
-				} else if (functionalInterface instanceof RunnableWithException) {
-					((RunnableWithException) functionalInterface).run();
-					return null;
-				} else {
-					throw new InvalidParameterException();
-				}
+				return callable.call();
 			} catch (Exception e) {
 				counter++;
 				log.error("retry {} / {}, {}", counter, RETRY, message, e);
