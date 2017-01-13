@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author yongmaroo.kim (yongmaroo.kim@navercorp.com)
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class FileWebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FileWebApplication.class, args);
